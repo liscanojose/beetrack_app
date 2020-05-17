@@ -11,8 +11,9 @@ class VehiclesController < ApplicationController
   # GET /vehicles/1.json
   def show_uniq
     @address_ar = []
-    @vehicle.locations.each do |location|
-      @address_ar.push(location.long_and_lat)
+    if @vehicle.locations.present?
+      @vehicle.locations.last
+        @address_ar.push(@vehicle.locations.order(sent_at: :asc).last.long_and_lat)
     end
   end
 
