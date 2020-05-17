@@ -11,7 +11,7 @@ class Api::V1::LocationsController < ApplicationController
     if @location.assign_new_location_to_vehicle
       render json: {status: 200}
     else
-      render json: {errors: "Ocurrió un error al procesar a petición", status: :unprocessable_entity }
+      render json: {errors: "Ocurrió un error al procesar la petición", status: :unprocessable_entity }
     end
   end
 
