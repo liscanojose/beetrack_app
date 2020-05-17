@@ -26,8 +26,6 @@
     <div id="map"></div>
     <script>
     var address_ar = <%= raw @address_ar %>;
-    var key = "<%= raw ENV['APIKEY']%>";
-    var gmap = "https://maps.googleapis.com/maps/api/js?key=" + key + "&callback=initMap"
       // The following example creates complex markers to indicate beaches near
       // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
       // to the base of the flagpole.
@@ -85,8 +83,8 @@
       }
 
     </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=tu key&callback=initMap">
+    <script async defer src=<%="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_API_KEY']}&callback=initMap"%> type="text/javascript">
     </script>
+
   </body>
 </html>
