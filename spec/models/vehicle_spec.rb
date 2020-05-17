@@ -1,5 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Vehicle, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "validations" do
+    subject { FactoryBot.create(:vehicle) }
+    it { should validate_uniqueness_of(:identifier) }
+  end
 end
