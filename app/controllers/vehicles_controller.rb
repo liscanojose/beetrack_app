@@ -20,7 +20,9 @@ class VehiclesController < ApplicationController
     @address_ar = []
     @vehicles = Vehicle.all
     @vehicles.each do |vehicle|
-      @address_ar.push(vehicle.locations.order(sent_at: :asc).last.long_and_lat)
+      if vehicle.locations.present?
+        @address_ar.push(vehicle.locations.order(sent_at: :asc).last.long_and_lat)
+      end
     end
   end
 

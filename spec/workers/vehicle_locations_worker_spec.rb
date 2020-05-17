@@ -11,13 +11,13 @@ RSpec.describe VehicleLocationsWorker, type: :worker do
       expect do
         described_class.perform_async
       end.to change(described_class.jobs, :size).by(1)
-      described_class.perform(location)
+      described_class.perform_in(1.second, location)
     end
     context 'occurs in request' do
       let(:location) { FactoryBot.create(:location) }
       it 'occurs at GPS waypoints' do
         vehicle = location.vehicle
-        described_class.perform(location)
+        described_class.perform_in(1.second, location)
         expect(Location.last).to eq(location)
         expect(Location.last.vehicle).to eq(vehicle)
       end

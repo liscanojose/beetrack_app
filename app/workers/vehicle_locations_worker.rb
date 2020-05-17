@@ -2,8 +2,9 @@ class VehicleLocationsWorker
   include Sidekiq::Worker
   sidekiq_options retry: 5
 
-  def self.perform(location)
-    vehicle = Vehicle.find_by(identifier: location.vehicle_identifier).present? ? Vehicle.find_by(identifier: location.vehicle_identifier) : Vehicle.create(identifier: location.vehicle_identifier)
+  def perform(location_hash)
+    vehicle = Vehicle.find_by(identifier: location_hash["vehicle_identifier"]).present? ? Vehicle.find_by(identifier: location_hash["vehicle_identifier"]) : Vehicle.create(identifier: location_hash["vehicle_identifier"])
+    location = Location.new(latitude: location_hash["latitude"], longitude: location_hash["longitude"],sent_at: location_hash["sent_at"], vehicle_identifier: location_hash["vehicle_identifier"])
     vehicle.locations.push(location)
   end
 end

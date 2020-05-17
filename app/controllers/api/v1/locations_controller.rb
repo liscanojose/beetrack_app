@@ -8,7 +8,7 @@ class Api::V1::LocationsController < ApplicationController
   end
 
   def create
-    if @location.assign_new_location_to_vehicle
+    if Location.assign_new_location_to_vehicle(@location)
       render json: {status: 200}
     else
       render json: {errors: "Ocurrió un error al procesar la petición", status: :unprocessable_entity }
@@ -31,7 +31,7 @@ class Api::V1::LocationsController < ApplicationController
     end
 
     def new
-      @location = Location.new(latitude: params[:latitude], longitude: params[:longitude], sent_at: params[:sent_at], vehicle_identifier: params[:vehicle_identifier])
+      @location = {latitude: params[:latitude], longitude: params[:longitude], sent_at: params[:sent_at], vehicle_identifier: params[:vehicle_identifier]}
     end
     def set_vehicle
       @vehicle = Vehicle.find_by(identifier: params[:vehicle_identifier])

@@ -6,8 +6,8 @@ class Location < ApplicationRecord
     [self.latitude,self.longitude,self.vehicle_identifier]
   end
 
-  def assign_new_location_to_vehicle
-    VehicleLocationsWorker.perform(self)
+  def self.assign_new_location_to_vehicle(location)
+    VehicleLocationsWorker.perform_in(1.second, location)
   end
 
 end
