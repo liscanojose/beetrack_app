@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
+  root to: 'vehicles#show'
   get 'vehicles', to: 'vehicles#show', as:'show'
   #resources :vehicles
   scope module: 'api', path: "(:api)", api: /api/ , defaults: {format: 'json'} do
