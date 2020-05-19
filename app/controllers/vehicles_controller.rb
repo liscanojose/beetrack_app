@@ -17,6 +17,7 @@ class VehiclesController < ApplicationController
     end
   end
 
+  #muestra en el mapa de google con un icono de un vehiculo azul su localización mas reciente
   def show
     @address_ar = []
     @vehicles = Vehicle.all

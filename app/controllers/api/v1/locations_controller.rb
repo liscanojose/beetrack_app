@@ -8,6 +8,7 @@ class Api::V1::LocationsController < ApplicationController
 
   def create
     if @location[:latitude].present? && @location[:longitude].present? && @location[:sent_at].present? && @location[:vehicle_identifier].present?
+      #metodo que se ejecutara en background y hara el registro en la bd
       if Location.assign_new_location_to_vehicle(@location)
         render json: {status: 200}
       else
