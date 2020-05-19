@@ -19,6 +19,9 @@ se puede hacer uso de postman para enviar los request aca un ejemplo
 usando el port 3000 que usa por defecto rails
 http://localhost:3000/api/v1/gps?latitude=-33.116889&longitude=-70.106705&sent_at=2020-05-18 19:49:00&vehicle_identifier=HASD24
 
+la ruta de root http://localhost:3000
+te mostrara el mapa con la localización mas reciente de los vehiculos con un icono de un carro en color azul, al hacer hover con el mouse en el icono se vusualizara su identifier
+
 
 Things you may want to cover:
 
