@@ -2,7 +2,9 @@
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
-
+name: José Javier Liscano
+email: jose8javier@gmail.com
+link del proyecto en github: https://github.com/liscanojose/beetrack_app
 Esta prueba hara uso del api de google map para mostrar la ubicación mas reciente de un vehiculo dada su longitude y latitude
 
 cada request debe llegar el siguiente endpoint /api/v1/gps that accepts GPS waypoints associated to a vehicle. The following format must be used:
@@ -12,6 +14,10 @@ cada request debe llegar el siguiente endpoint /api/v1/gps that accepts GPS wayp
   "sent_at": 2016-06-02 20:45:00",
   "vehicle_identifier": "HA-3452"
 }
+
+se puede hacer uso de postman para enviar los request aca un ejemplo
+usando el port 3000 que usa por defecto rails
+http://localhost:3000/api/v1/gps?latitude=-33.116889&longitude=-70.106705&sent_at=2020-05-18 19:49:00&vehicle_identifier=HASD24
 
 
 Things you may want to cover:
