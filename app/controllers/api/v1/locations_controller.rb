@@ -2,15 +2,19 @@ class Api::V1::LocationsController < ApplicationController
   protect_from_forgery with: :null_session
   before_action :set_location, only: [:show, :edit, :update, :destroy]
   before_action :new, only: [:create]
+  
   def index
-    render json: {message: "hola mundo"}
   end
 
   def create
-    if Location.assign_new_location_to_vehicle(@location)
-      render json: {status: 200}
+    if @location[:latitude].present? && @location[:longitude].present? && @location[:sent_at].present? && @location[:vehicle_identifier].present?
+      if Location.assign_new_location_to_vehicle(@location)
+        render json: {status: 200}
+      else
+        render json: {errors: "Ocurrió un error al procesar la petición", status: :unprocessable_entity }
+      end
     else
-      render json: {errors: "Ocurrió un error al procesar la petición", status: :unprocessable_entity }
+      render json: {errors: "Ocurrió un error al procesar la petición, faltan parametros", status: :unprocessable_entity }
     end
   end
 
